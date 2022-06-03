@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header(){
-    return <nav class="main-nav">
-        <Link to="/" class="main-nav-logo">
+    return <nav className="main-nav">
+        <Link to="/" className="main-nav-logo">
             <img
-            class="main-nav-logo-image"
+            className="main-nav-logo-image"
             src={Logo}
             alt="Argent Bank Logo"
             />
-            <h1 class="sr-only">Argent Bank</h1>
+            <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
-            <Link class="main-nav-item" to="./sign-in.html">
+            <Link className="main-nav-item" to="/sign-in">
            
                 <FontAwesomeIcon icon={faUserCircle} />
                 Sign In

@@ -1,3 +1,5 @@
 export default function Error404(){
-    return <div>404</div>
+    return <main className="main">
+        <div className="error404">Error 404</div>
+    </main>
 }

@@ -296,3 +296,12 @@ body {
     width: 200px;
   }
 }
+
+.alert-danger{
+  font-size: .8rem;
+  color: #ff0000;
+}
+
+Form{
+  margin-bottom: 0.5rem;
+}

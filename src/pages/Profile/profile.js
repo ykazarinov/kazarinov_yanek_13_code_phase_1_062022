@@ -1,29 +1,40 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import userService from "../../services/user.service";
+import { getProfil } from "../../slices/profile";
+
+
+
 const Profile = () => {
+  const dispatch = useDispatch()
+
   const { user: currentUser } = useSelector((state) => state.auth);
+  // const currentProfile = useSelector((state) => state.profile)
+  const { entities, loading } = useSelector((state) => state.profile)
+
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    dispatch(getProfil())
+  }, []);
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
-  console.log(currentUser)
+  // console.log(currentUser)
+  // console.log('entities', entities)
   return (
     <div className="container">
       <header className="jumbotron">
         <h3>
-          <strong>{currentUser.user}</strong> Profile
+          <strong>{entities.body.firstName} {entities.body.lastName}</strong> Profile
         </h3>
       </header>
        <p>
         <strong>Token:</strong> {currentUser.body.token}
       </p>
-      <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {currentUser.email}
-      </p>
-      <strong>Authorities:</strong>
+     
 
     </div>
   );

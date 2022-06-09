@@ -15,15 +15,16 @@ const login = (email, password) => {
         password,
     })
     .then((response) => {
-        
-      if (response.data.token) {
-        localStorage.setItem("email", JSON.stringify(response.data));
+      // console.log(response.data)
+      if (response.data.body.token) {
+       
+        localStorage.setItem("token", JSON.stringify(response.data.body.token));
       }
       return response.data;
     });
 };
 const logout = () => {
-  localStorage.removeItem("email");
+  localStorage.removeItem("token");
 };
 const authService = {
 //   register,

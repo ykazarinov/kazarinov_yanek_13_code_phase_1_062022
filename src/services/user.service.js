@@ -3,8 +3,13 @@ import authHeader from "./auth-header";
 const API_URL = "http://localhost:3001/api/v1/user/profile";
 
 const getUserBoard = () => {
-  return axios.get(API_URL, { headers: authHeader() });
-};
+
+  return axios({
+    method: 'post',
+    url: API_URL,
+    headers: authHeader()
+  })
+ };
 const userService = {
   getUserBoard,
  

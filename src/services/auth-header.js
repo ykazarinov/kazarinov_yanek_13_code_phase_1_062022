@@ -1,6 +1,6 @@
 export default function authHeader() {
     const token = JSON.parse(localStorage.getItem('token'));
-    // console.log(user)
+    console.log(token)
     if (token) {
         return { 
            
@@ -9,7 +9,7 @@ export default function authHeader() {
                 'X-Custom-Header': 'header value'
             
         }
-    } else {
+    } else { 
         return {};
     }
     // const token = localStorage.getItem('token')

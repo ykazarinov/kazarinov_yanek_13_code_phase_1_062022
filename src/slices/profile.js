@@ -5,13 +5,32 @@ import authHeader from "../services/auth-header";
 import axios from "axios";
 
 
-// export const getUserBoard = createAsyncThunk(
-//   "profile/getUserBoard",
+
+
+
+export const getProfil = createAsyncThunk(
+  'profile/getProfil',
+  async (thunkAPI) => {
+    const res = await userService.getUserBoard()
+  return res.data
+})
+
+
+
+
+// export const getProfil = createAsyncThunk(
+//   'profile/getProfil',
 //   async (thunkAPI) => {
-//     try {
-//       const data = await userService.getUserBoard();
-//       return { profile: data };
-//     } catch (error) {
+//     // try {
+//       const data = axios({
+//         method: 'post',
+//         url: "http://localhost:3001/api/v1/user/profile",
+//         headers: authHeader()
+//       })
+//       console.log(data.data)
+//       return data.data
+//     }
+//     catch (error){
 //       const message =
 //         (error.response &&
 //           error.response.data &&
@@ -19,22 +38,10 @@ import axios from "axios";
 //         error.message ||
 //         error.toString();
 //       thunkAPI.dispatch(setMessage(message));
+//       console.log(error)
 //       return thunkAPI.rejectWithValue();
 //     }
-//   }
-// );
-
-
-export const getProfil = createAsyncThunk(
-  'profile/getProfil',
-  async (thunkAPI) => {
-    const res = await axios({
-      url: 'http://localhost:3001/api/v1/user/profile',
-      method: 'post',
-      headers: authHeader()
-    })
-  return res.data
-})
+// })
 
 const initialState = {
   entities: [],

@@ -9,8 +9,10 @@ import { clearMessage } from "../../slices/message";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
+import { getProfil } from "../../slices/profile";
+
 const Login = (props) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
@@ -33,16 +35,11 @@ const Login = (props) => {
 
   const handleLogin = (formValue) => {
     const { email, password } = formValue;
-    setLoading(true);
+    // setLoading(true);
     dispatch(login({ email, password }))
-      // .unwrap()
-      // .then(() => {
-      //   props.history.push("/profile");
-      //   window.location.reload();
-      // })
-      // .catch(() => {
-      //   setLoading(false);
-      // });
+    // dispatch(getProfil())
+    
+     
   };
 
   if (isLoggedIn) {
@@ -84,10 +81,12 @@ const Login = (props) => {
                 <label htmlFor="remember-me">Remember me</label>
               </div>
               <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-block sign-in-button" disabled={loading}>
-                  {loading && (
+                <button type="submit" className="btn btn-primary btn-block sign-in-button" 
+                // disabled={loading}
+                >
+                  {/* {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
-                  )}
+                  )} */}
                   <span>Sign In</span>
                 </button>
               </div>

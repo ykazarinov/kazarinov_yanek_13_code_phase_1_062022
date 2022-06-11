@@ -15,8 +15,6 @@ export default function Header(){
 
     const myLogout = () => {
         dispatch(logout())
-        // localStorage.removeItem("token");
-        return <Navigate to="/" />
     }
 
 

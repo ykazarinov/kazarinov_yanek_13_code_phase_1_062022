@@ -23,6 +23,7 @@ const login = (email, password) => {
 };
 const logout = () => {
   localStorage.removeItem("token");
+ 
 };
 const authService = {
 //   register,

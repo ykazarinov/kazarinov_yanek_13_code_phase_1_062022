@@ -43,7 +43,7 @@ const Profile = () => {
   
 
   if (!currentUser) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/sign-in" />;
   }
   // console.log(currentUser)
     console.log('entities', entities)

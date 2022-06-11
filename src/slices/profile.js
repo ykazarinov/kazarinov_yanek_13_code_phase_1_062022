@@ -11,8 +11,20 @@ import axios from "axios";
 export const getProfil = createAsyncThunk(
   'profile/getProfil',
   async (thunkAPI) => {
+    try {
     const res = await userService.getUserBoard()
   return res.data
+} catch (error) {
+  const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      console.log(error)
+      return thunkAPI.rejectWithValue();
+}
 })
 
 
@@ -44,7 +56,7 @@ export const getProfil = createAsyncThunk(
 // })
 
 const initialState = {
-  entities: [],
+  entities: null,
   loading: false,
 }
 
@@ -57,9 +69,9 @@ const initialState = {
     [getProfil.pending]: (state) => {
       state.loading = true
     },
-    [getProfil.fulfilled]: (state, { payload }) => {
+    [getProfil.fulfilled]: (state, action) => {
       state.loading = false
-      state.entities = payload
+      state.entities = action.payload
     },
     [getProfil.rejected]: (state) => {
       state.loading = false

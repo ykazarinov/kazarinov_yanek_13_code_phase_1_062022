@@ -15,6 +15,7 @@ const Login = (props) => {
   // const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
+  const { entities, loading } = useSelector((state) => state.profile)
 
   const dispatch = useDispatch();
 
@@ -37,8 +38,7 @@ const Login = (props) => {
     const { email, password } = formValue;
     // setLoading(true);
     dispatch(login({ email, password }))
-    // dispatch(getProfil())
-    
+         
      
   };
 

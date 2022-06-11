@@ -32,28 +32,30 @@ export default function Header(){
         </Link>
         
             
-            {/* {isLoggedIn ? (
+            {isLoggedIn ? (
+                    entities === null ? ( 
+                        <p>Loading profile...</p>
+                    ) :(
                 <div>
-                 <Link className="main-nav-item user-icon2" to="/sign-in">
-                    <FontAwesomeIcon icon={faUserCircle} className='user-icon' />
-                    {entities.body.firstName}
-                </Link>
-               
-                <button onClick={myLogout}>
-                    <FontAwesomeIcon icon={faSignOut} className='user-icon' />
-                    Sign Out
-                </button>
-                    
-               
+                    <Link className="main-nav-item user-icon2" to="/sign-in">
+                        <FontAwesomeIcon icon={faUserCircle} className='user-icon' />
+                        {entities.body.firstName}
+                    </Link>
+                
+                    <button onClick={myLogout}>
+                        <FontAwesomeIcon icon={faSignOut} className='user-icon' />
+                        Sign Out
+                    </button>
                 </div>
-            ) : ( */}
+                    )
+            ) : (
                 <div>
                     <Link className="main-nav-item" to="/sign-in">
                         <FontAwesomeIcon icon={faUserCircle}  className='user-icon' />
                         Sign In
                     </Link>
                 </div>
-            {/* )} */}
+             )} 
            
         
     </nav>

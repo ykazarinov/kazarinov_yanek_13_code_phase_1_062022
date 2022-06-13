@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getProfil } from "../../slices/profile";
+
 import userService from "../../services/user.service";
 
 const Profile = () => {
@@ -10,7 +11,7 @@ const Profile = () => {
   const { entities, loading } = useSelector((state) => state.profile)
   const { isLoggedIn } = useSelector((state) => state.auth)
 
-  const [content, setContent] = useState("");
+  const [editName, setEditName] = useState(false);
 
   const moneyData = [
     {
@@ -31,11 +32,6 @@ const Profile = () => {
   ]
 
   const dispatch = useDispatch();
- 
-   
-      //  dispatch(getProfil())
-
-
 
   useEffect(() => {
     dispatch(getProfil())
@@ -54,10 +50,30 @@ const Profile = () => {
   }
   return (
     <main className="main bg-dark">
-      <div className="header">
-        <h1>Welcome back<br />{entities.body.firstName} {entities.body.lastName}!</h1>
-        <button className="edit-button">Edit Name</button>
-      </div>
+      
+        {editName === false ?
+        <div className="header">
+          <h1>Welcome back<br />
+            {entities.body.firstName} 
+            {entities.body.lastName}!
+          </h1>  
+          <button className="edit-button" onClick={()=>setEditName(true)}>Edit Name</button>
+        </div>
+        : 
+        <div className="header">
+            <h1>Welcome back<br /></h1>
+            <form>
+              <p>
+                <input className='edit-name-input'  placeholder="First Name" defaultValue={entities.body.firstName} />
+                <input className='edit-name-input'  placeholder="Second Name" defaultValue={entities.body.lastName} />
+              </p>
+              <button className="edit-button" onClick={()=>setEditName(false)}>Cancel</button>
+              <button type="submit" className="edit-button">Save</button>
+            </form>
+        </div>
+      }
+        
+      
       <h2 className="sr-only">Accounts</h2>
       {moneyData.map((myCount, index)=> (
          <section key={index} className="account">

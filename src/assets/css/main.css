@@ -260,6 +260,8 @@ body {
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
 .header {
@@ -312,4 +314,21 @@ Form{
 
 .user-icon2{
   margin-right: 1.5rem;
+}
+
+.logout-btn{
+  color: #2c3e50;
+  background-color: transparent;
+  border: 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.edit-name-input{
+  font-size: 2rem;
+  font-weight: bold;
+  width: 10rem;
+  border: 0;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }

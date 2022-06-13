@@ -40,7 +40,7 @@ export default function Header(){
                         {entities.body.firstName}
                     </Link>
                 
-                    <button onClick={myLogout}>
+                    <button className='logout-btn' onClick={myLogout}>
                         <FontAwesomeIcon icon={faSignOut} className='user-icon' />
                         Sign Out
                     </button>

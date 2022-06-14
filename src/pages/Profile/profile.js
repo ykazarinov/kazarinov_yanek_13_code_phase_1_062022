@@ -7,15 +7,10 @@ import * as Yup from "yup";
 import { getProfil } from "../../slices/profile";
 import { setProfil } from "../../slices/newProfile";
 
-import userService from "../../services/user.service";
-
-
-
-
 const Profile = () => {
+  const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.auth);
-  const { entities, loading } = useSelector((state) => state.profile)
-  const { isLoggedIn } = useSelector((state) => state.auth)
+  const { entities } = useSelector((state) => state.profile)
   const { message } = useSelector((state) => state.message);
   const [editName, setEditName] = useState(false);
 
@@ -37,8 +32,6 @@ const Profile = () => {
     }
   ]
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getProfil())
     document.title = "Argent Bank - Profile Page"
@@ -46,8 +39,6 @@ const Profile = () => {
 
 
   const initialValues = {
-    // firstName: "",
-    // lastName: ""
     firstName: entities === null ? '' : entities.body.firstName,
     lastName: entities === null ? '' : entities.body.lastName
   };
@@ -59,23 +50,14 @@ const Profile = () => {
 
   const saveProfil = (formValue) => {
     const { firstName, lastName } = formValue;
-    // setLoading(true);
-    
     dispatch(setProfil({ firstName, lastName }))
-    // setEditName(false)
     setEditName(editName => false);
     dispatch(getProfil())
-         
-     
   };
   
-
   if (!currentUser) {
     return <Navigate to="/sign-in" />;
   }
-  // console.log(currentUser)
-    // console.log('entities', entities)
-  // console.log(content.body)
 
   if (entities === null) {
     return <p>Loading profile...</p>;
@@ -99,42 +81,43 @@ const Profile = () => {
             onSubmit={saveProfil}
             >
               <Form>
-                
-                  
-                   
-                      <Field 
-                        name="firstName" 
-                        type="text" 
-                        className='edit-name-input'  
-                        placeholder="First Name" 
-
-                      />
-                      <ErrorMessage
-                        name="firstName"
-                        component="div"
-                        className="alert alert-danger"
-                      />
-                
-                   
-                      <Field 
-                        name="lastName" 
-                        type="text" 
-                        className='edit-name-input'  
-                        placeholder="Last Name" 
- 
-                      />
-                      <ErrorMessage
-                        name="lastName"
-                        component="div"
-                        className="alert alert-danger"
-                      />
+                <Field 
+                  name="firstName" 
+                  type="text" 
+                  className='edit-name-input'  
+                  placeholder="First Name" 
+                />
+                <ErrorMessage
+                  name="firstName"
+                  component="div"
+                  className="alert alert-danger"
+                />
+                <Field 
+                  name="lastName" 
+                  type="text" 
+                  className='edit-name-input'  
+                  placeholder="Last Name" 
+                />
+                <ErrorMessage
+                  name="lastName"
+                  component="div"
+                  className="alert alert-danger"
+                />
                  
-                  <div>
-                    <button className="edit-button edit-name-button" onClick={()=>setEditName(false)}>Cancel</button>
-
-                    <button type="submit" className="edit-button edit-name-button">Save</button>
-                  </div>
-                
+                <div>
+                  <button 
+                    className="edit-button edit-name-button" 
+                    onClick={()=>setEditName(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit" 
+                    className="edit-button edit-name-button"
+                  >
+                    Save
+                  </button>
+                </div>
               </Form>
             </Formik>
             {message && (
@@ -146,8 +129,7 @@ const Profile = () => {
         )}
         </div>
       }
-        
-      
+
       <h2 className="sr-only">Accounts</h2>
       {moneyData.map((myCount, index)=> (
          <section key={index} className="account">
@@ -161,7 +143,6 @@ const Profile = () => {
           </div>
         </section>
       ))}
-     
      
     </main>
   );

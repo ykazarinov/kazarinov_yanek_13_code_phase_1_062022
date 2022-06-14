@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useEffect  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -9,14 +9,9 @@ import { clearMessage } from "../../slices/message";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { getProfil } from "../../slices/profile";
-
 const Login = (props) => {
-  // const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
-  const { entities, loading } = useSelector((state) => state.profile)
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,8 +32,6 @@ const Login = (props) => {
   const handleLogin = (formValue) => {
     const { email, password } = formValue;
     dispatch(login({ email, password }))
-         
-     
   };
 
   if (isLoggedIn) {
@@ -81,11 +74,7 @@ const Login = (props) => {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-block sign-in-button" 
-                // disabled={loading}
                 >
-                  {/* {loading && (
-                    <span className="spinner-border spinner-border-sm"></span>
-                  )} */}
                   <span>Sign In</span>
                 </button>
               </div>

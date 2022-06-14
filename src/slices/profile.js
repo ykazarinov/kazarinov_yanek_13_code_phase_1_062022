@@ -6,10 +6,10 @@ export const getProfil = createAsyncThunk(
   'profile/getProfil',
   async (thunkAPI) => {
     try {
-    const res = await userService.getUserBoard()
-  return res.data
-} catch (error) {
-  const message =
+      const res = await userService.getUserBoard()
+      return res.data
+    } catch (error) {
+      const message =
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
@@ -18,15 +18,16 @@ export const getProfil = createAsyncThunk(
       thunkAPI.dispatch(setMessage(message));
       console.log(error)
       return thunkAPI.rejectWithValue();
-}
-})
+    }
+  }
+)
 
 const initialState = {
   entities: null,
   loading: false,
 }
 
-  const profileSlice = createSlice({
+const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {},
@@ -42,10 +43,7 @@ const initialState = {
     [getProfil.rejected]: (state) => {
       state.loading = false
     },
-   
   },
 });
 const { reducer } = profileSlice;
 export default reducer;
-
-//=============================

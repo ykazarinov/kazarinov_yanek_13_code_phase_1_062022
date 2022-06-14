@@ -1,10 +1,6 @@
 import { useEffect } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
 import Feature from '../../components/Feature/feature'
 import Banner from '../../components/Banner/banner'
-
 import icon1 from '../../assets/img/icon-chat.png'
 import icon2 from '../../assets/img/icon-money.png'
 import icon3 from '../../assets/img/icon-security.png'
@@ -26,8 +22,7 @@ export default function Home(){
         title: 'Security you can trust',
         text: "We use top of the line encryption to make sure your data and money is always safe."
     },
-]
-
+    ]
     const bannerContent = {
         title: "Promoted Content",
         text1: "No fees.",
@@ -51,7 +46,6 @@ export default function Home(){
         />
         <section className="features">
             <h2 className="sr-only">Features</h2>
-
 
             {featuresContent.map && featuresContent.map((item, index)=> (
                 <Feature key={index}

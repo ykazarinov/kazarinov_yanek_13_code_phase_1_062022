@@ -28,7 +28,7 @@ const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
 
-  const authSlice = createSlice({
+const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {

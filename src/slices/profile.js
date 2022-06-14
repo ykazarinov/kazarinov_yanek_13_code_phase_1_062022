@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage } from "./message";
 import userService from "../services/user.service";
-import authHeader from "../services/auth-header";
-import axios from "axios";
-
-
-
-
 
 export const getProfil = createAsyncThunk(
   'profile/getProfil',
@@ -26,34 +20,6 @@ export const getProfil = createAsyncThunk(
       return thunkAPI.rejectWithValue();
 }
 })
-
-
-
-
-// export const getProfil = createAsyncThunk(
-//   'profile/getProfil',
-//   async (thunkAPI) => {
-//     // try {
-//       const data = axios({
-//         method: 'post',
-//         url: "http://localhost:3001/api/v1/user/profile",
-//         headers: authHeader()
-//       })
-//       console.log(data.data)
-//       return data.data
-//     }
-//     catch (error){
-//       const message =
-//         (error.response &&
-//           error.response.data &&
-//           error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//       thunkAPI.dispatch(setMessage(message));
-//       console.log(error)
-//       return thunkAPI.rejectWithValue();
-//     }
-// })
 
 const initialState = {
   entities: null,

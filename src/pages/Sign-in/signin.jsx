@@ -36,7 +36,6 @@ const Login = (props) => {
 
   const handleLogin = (formValue) => {
     const { email, password } = formValue;
-    // setLoading(true);
     dispatch(login({ email, password }))
          
      

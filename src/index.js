@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/home';
 import Signin from './pages/Sign-in/signin';
 import Profile from './pages/Profile/profile';
+
+import Basic from './pages/test/test';
+
 import Error404 from './pages/Error/error404'
 import reportWebVitals from './reportWebVitals';
 import './assets/css/main.css';
@@ -24,6 +27,7 @@ root.render(
           <Route exact path="/"  element={<Home />} />
           <Route exact path="/sign-in" element={<Signin />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/test" element={<Basic />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
         <Footer />

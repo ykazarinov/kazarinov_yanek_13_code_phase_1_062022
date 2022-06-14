@@ -46,10 +46,10 @@ const Profile = () => {
 
 
   const initialValues = {
-    firstName: "",
-    lastName: ""
-    // firstName: entities.body.firstName ? entities != null : '',
-    // lastName: entities.body.lastName ? entities != null : ''
+    // firstName: "",
+    // lastName: ""
+    firstName: entities === null ? '' : entities.body.firstName,
+    lastName: entities === null ? '' : entities.body.lastName
   };
 
   const validationSchema = Yup.object().shape({
@@ -86,8 +86,7 @@ const Profile = () => {
         {editName === false ?
         <div className="header">
           <h1>Welcome back<br />
-            {entities.body.firstName} 
-            {entities.body.lastName}!
+            {entities.body.firstName} {entities.body.lastName}!
           </h1>  
           <button className="edit-button" onClick={()=>setEditName(true)}>Edit Name</button>
         </div>
@@ -101,8 +100,8 @@ const Profile = () => {
             >
               <Form>
                 
-                  <div className="form-group input-wrapper">
-                    <label htmlFor="firstName">First Name</label>
+                  
+                   
                       <Field 
                         name="firstName" 
                         type="text" 
@@ -115,9 +114,8 @@ const Profile = () => {
                         component="div"
                         className="alert alert-danger"
                       />
-                  </div>
-                  <div className="form-group input-wrapper">
-                    <label htmlFor="lastName">Last Name</label>
+                
+                   
                       <Field 
                         name="lastName" 
                         type="text" 
@@ -130,12 +128,11 @@ const Profile = () => {
                         component="div"
                         className="alert alert-danger"
                       />
-                  </div>
-                  <div className="form-group">
-                    <button className="edit-button" onClick={()=>setEditName(false)}>Cancel</button>
-                  </div>
-                  <div className="form-group">
-                    <button type="submit" className="edit-button">Save</button>
+                 
+                  <div>
+                    <button className="edit-button edit-name-button" onClick={()=>setEditName(false)}>Cancel</button>
+
+                    <button type="submit" className="edit-button edit-name-button">Save</button>
                   </div>
                 
               </Form>

@@ -29,6 +29,7 @@ const Login = (props) => {
     password: Yup.string().required("This field is required!"),
   });
 
+  // function for submit
   const handleLogin = (formValue) => {
     const { email, password, rememberMeToggle } = formValue;
 

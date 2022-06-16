@@ -13,6 +13,8 @@ export default function Header(){
     const dispatch = useDispatch();
     const { isLoggedIn } = useSelector((state) => state.auth)
     const { entities } = useSelector((state) => state.profile)
+
+    // function for logout
     const myLogout = () => {
         dispatch(logout())
     }

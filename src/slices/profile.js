@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage } from "./message";
 import userService from "../services/user.service";
 
+// createAsyncThunk for middleware for get data of User's Profil 
 export const getProfil = createAsyncThunk(
   'profile/getProfil',
   async (thunkAPI) => {
@@ -27,6 +28,7 @@ const initialState = {
   loading: false,
 }
 
+// slice, which content reducers and actions for data of the User's Profil and status of loading 
 const profileSlice = createSlice({
   name: "profile",
   initialState,

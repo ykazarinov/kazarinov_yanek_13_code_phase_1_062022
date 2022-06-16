@@ -1,6 +1,7 @@
 import React from 'react';
-// import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from 'react-dom/client';
+//The <Provider> component makes the Redux store available 
+//to any nested components that need to access the Redux store.
 import {Provider} from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/home';

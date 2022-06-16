@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {};
+
+// Slice for set and clear message of an error if form is incorrect
 const messageSlice = createSlice({
   name: "message",
   initialState,

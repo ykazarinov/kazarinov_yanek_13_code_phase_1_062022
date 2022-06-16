@@ -15,6 +15,8 @@ const Profile = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { entities } = useSelector((state) => state.profile)
   const { message } = useSelector((state) => state.message);
+
+  //Profile edit status
   const [editName, setEditName] = useState(false);
 
   const moneyData = [
@@ -40,13 +42,16 @@ const Profile = () => {
     document.title = "Argent Bank - Profile Page"
 
     const token = JSON.parse(localStorage.getItem('token'));
+
+    // This is for "Remember me" 
+
     const rememberMeToggle = localStorage.getItem('rememberMe')
     if(token && rememberMeToggle){
         dispatch(rememberMe())
     }
   }, [dispatch]);
 
-
+  // Initial values: Current last name and first name
   const initialValues = {
     firstName: entities === null ? '' : entities.body.firstName,
     lastName: entities === null ? '' : entities.body.lastName
@@ -57,6 +62,7 @@ const Profile = () => {
     lastName: Yup.string().required("This field is required!"),
   });
 
+  //function for submit
   const saveProfil = (formValue) => {
     const { firstName, lastName } = formValue;
     dispatch(setProfil({ firstName, lastName }))

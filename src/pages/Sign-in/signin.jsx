@@ -30,7 +30,11 @@ const Login = (props) => {
   });
 
   const handleLogin = (formValue) => {
-    const { email, password } = formValue;
+    const { email, password, rememberMeToggle } = formValue;
+
+    if(rememberMeToggle){
+      localStorage.setItem("rememberMe", true);
+    }
     dispatch(login({ email, password }))
   };
 
@@ -69,7 +73,7 @@ const Login = (props) => {
                 />
               </div>
               <div className="input-remember">
-                <input type="checkbox" id="remember-me" />
+                <Field type="checkbox" id="remember-me" name="rememberMeToggle" />
                 <label htmlFor="remember-me">Remember me</label>
               </div>
               <div className="form-group">

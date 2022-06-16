@@ -1,0 +1,188 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  version: '2.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3000
+basePath: /api/v2
+schemes:
+  - http
+paths:
+  /user/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Return a list of transactions
+      parameters:
+        - in: header
+          type: string 
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transactions Successfully
+          schema: 
+            $ref: '#/definitions/TransactionsReponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+  
+  /user/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Returns a description of a single transaction with details
+      parameters:
+        - in: header
+          type: string 
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: The ID of the transaction to return.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction Successfully
+          schema:
+              $ref: '#/definitions/TransactionModuleReponse'
+
+        '401':
+          description: Unauthorized
+        '403':
+          description: Access is denied
+        '404':
+          description: Page not found
+        '500':
+          description: Internal Server Error
+          
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Adding/modifying/deleting user information in a transaction
+      parameters:
+        - in: header
+          type: string 
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          minimum: 1
+          description: The ID of the transaction to return.
+        - in: body
+          name: User Transaction Info
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUserInfo'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction Successfully
+          schema:
+            $ref: '#/definitions/TransactionUserInfoResponse'
+              
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Access is denied
+        '500':
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  TransactionsReponse:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 'fsf454vfg454'
+            transactionType:
+              type: string
+              example: 'debit'
+            summ:
+              type: integer
+              example: 10.13
+            date:
+              type: string
+              example: '01/01/2022'
+            transactionInfo:
+              type: string
+              example: 'Buying on the Internet'
+            userInfo:
+              type: string
+              example: ''
+  TransactionModuleReponse:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 'fsf454vfg454'
+          transactionType:
+            type: string
+            example: 'debit'
+          summ:
+            type: integer
+            example: 10.13
+          date:
+            type: string
+            example: '01/01/2022'
+          transactionInfo:
+            type: string
+            example: 'Buying on the Internet'
+          userInfo:
+            type: string
+            example: ''
+  TransactionUserInfoResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+  TransactionUserInfo:
+    type: object
+    properties:
+      userTransactionInfo:
+        type: string
+        example: 'Payment for electricity'
+  
+  

@@ -28,9 +28,15 @@ const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
 
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    rememberMe: (state, action) => {
+      state.isLoggedIn = true;
+    },
+  },
   extraReducers: {
 
     [login.fulfilled]: (state, action) => {
@@ -47,5 +53,7 @@ const authSlice = createSlice({
     },
   },
 });
-const { reducer } = authSlice;
+const { reducer, actions } = authSlice;
+
+export const { rememberMe } = actions
 export default reducer;

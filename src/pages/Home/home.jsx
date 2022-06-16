@@ -1,4 +1,8 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProfil } from "../../slices/profile";
+import { rememberMe } from "../../slices/auth";
+
 import Feature from '../../components/Feature/feature'
 import Banner from '../../components/Banner/banner'
 import icon1 from '../../assets/img/icon-chat.png'
@@ -6,6 +10,19 @@ import icon2 from '../../assets/img/icon-money.png'
 import icon3 from '../../assets/img/icon-security.png'
 
 export default function Home(){
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        // This is for "Remember me" 
+
+        const token = JSON.parse(localStorage.getItem('token'));
+        const rememberMeToggle = localStorage.getItem('rememberMe')
+        if(token && rememberMeToggle){
+            dispatch(getProfil())
+            dispatch(rememberMe())
+        }
+      }, []);
 
     const featuresContent = [{
         icon: icon1,

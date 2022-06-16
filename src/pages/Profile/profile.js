@@ -7,9 +7,12 @@ import * as Yup from "yup";
 import { getProfil } from "../../slices/profile";
 import { setProfil } from "../../slices/newProfile";
 
+import { rememberMe } from "../../slices/auth";
+
 const Profile = () => {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { entities } = useSelector((state) => state.profile)
   const { message } = useSelector((state) => state.message);
   const [editName, setEditName] = useState(false);
@@ -35,6 +38,12 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getProfil())
     document.title = "Argent Bank - Profile Page"
+
+    const token = JSON.parse(localStorage.getItem('token'));
+    const rememberMeToggle = localStorage.getItem('rememberMe')
+    if(token && rememberMeToggle){
+        dispatch(rememberMe())
+    }
   }, [dispatch]);
 
 
@@ -55,7 +64,7 @@ const Profile = () => {
     dispatch(getProfil())
   };
   
-  if (!currentUser) {
+  if (!isLoggedIn) {
     return <Navigate to="/sign-in" />;
   }
 

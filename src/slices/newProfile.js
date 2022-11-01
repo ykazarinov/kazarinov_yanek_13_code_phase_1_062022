@@ -23,7 +23,7 @@ export const setProfil = createAsyncThunk(
 )
 
 const initialState = {
-    entities: null,
+    // entities: null,
     loading: false,
 }
 
@@ -37,7 +37,7 @@ const newProfileSlice = createSlice({
     
     [setProfil.fulfilled]: (state, action) => {
         state.loading = false
-        state.entities = action.payload.entities
+        // state.entities = action.payload.entities
     },
     [setProfil.rejected]: (state) => {
         state.loading = false

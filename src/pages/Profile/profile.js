@@ -11,7 +11,7 @@ import { rememberMe } from "../../slices/auth";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.auth);
+  // const { user: currentUser } = useSelector((state) => state.auth);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { entities } = useSelector((state) => state.profile)
   const { message } = useSelector((state) => state.message);

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:3001/api/v1/user/login";
+const API_URL = "https://argentbank-server.herokuapp.com/api/v1/user/login";
 
 // services for login and logout request by the axios
 
